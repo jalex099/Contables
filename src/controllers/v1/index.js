@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import test from './test'
+import test from './testing'
 import { ping } from '../../services/response'
 
 const router = new Router()
