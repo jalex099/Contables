@@ -4,7 +4,7 @@
   "main": "src",
   "private": true,
   "scripts": {
-    "prod": "NODE_ENV=production node .",
+    "start": "NODE_ENV=production node .",
     "dev": "nodemon ."
   },
   "dependencies": {
