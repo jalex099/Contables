@@ -1,0 +1,12 @@
+{
+    "presets": [
+      ["@babel/env", {"targets": {"node": "current"}}]
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime",
+      "@babel/proposal-optional-chaining",
+      "@babel/proposal-nullish-coalescing-operator",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-transform-classes"
+    ]
+  }
