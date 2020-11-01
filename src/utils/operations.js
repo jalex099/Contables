@@ -4,4 +4,12 @@ function round (number, decimals = 2) {
   return Math.round(number * factor) / factor
 }
 
-export { feeCalculator, round }
+function isAllPropertiesInObject (object, properties) {
+  let validationResult = true
+  for (const field of properties) {
+    if (!object.hasOwnProperty(field)) validationResult = false
+  }
+  return validationResult
+}
+
+export { round, isAllPropertiesInObject }

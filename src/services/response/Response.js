@@ -23,26 +23,57 @@ class Response {
   }
 
   static notFound (res, message) {
-    const response = {code: 0, status: 404, name: 'Not Found', message}
+    let response = {code: 1, status: 404, name: 'Not Found'}
+    if (message.code && message.error) {
+      response.code = message.code
+      response.error = message.error
+    } else {
+      response.error = message
+    }
     res.status(404).json(response)
   }
 
   static badRequest (res, message = 'bad request') {
-    const response = {code: 0, status: 400, name: 'Bad Request', message}
+    let response = {code: 2, status: 400, name: 'Bad Request'}
+    if (message.code && message.error) {
+      response.code = message.code
+      response.error = message.error
+    } else {
+      response.error = message
+    }
     res.status(400).json(response)
   }
 
   static unauthorized (res, message = 'Your request was made with invalid credentials') {
-    const response = {code: 0, status: 401, name: 'Unauthorized', message}
+    let response = {code: 3, status: 401, name: 'Unauthorized'}
+    if (message.code && message.error) {
+      response.code = message.code
+      response.error = message.error
+    } else {
+      response.error = message
+    }
     res.status(401).json(response)
   }
 
   static internalServerError (res, message = 'was an internal server error occurred') {
-    const response = {code: 0, status: 500, name: 'Internal Server Error', message}
+    let response = {code: 4, status: 500, name: 'Internal Server Error'}
+    if (message.code && message.error) {
+      response.code = message.code
+      response.error = message.error
+    } else {
+      response.error = message
+    }
     res.status(500).json(response)
   }
 
-  static dataValidationFailed (res, response) {
+  static dataValidationFailed (res, message = 'Data validation filed') {
+    let response = {code: 4, status: 500, name: 'Data validation failed'}
+    if (message.code && message.error) {
+      response.code = message.code
+      response.error = message.error
+    } else {
+      response.error = message
+    }
     res.status(422).json(response)
   }
 }

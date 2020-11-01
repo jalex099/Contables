@@ -22,17 +22,30 @@ function successCreated (res, data) {
 }
 
 function notFound (res, message) {
-  const response = {code: 0, status: 404, name: 'Not Found', message}
+  let response = {code: 1, status: 404, name: 'Not Found'}
+  if (message.code && message.error) {
+    response.code = message.code
+    response.error = message.error
+  } else {
+    response.error = message
+  }
   res.status(404).json(response)
 }
 
 function badRequest (res, message = 'bad request') {
-  const response = {code: 0, status: 400, name: 'Bad Request', message}
+  let response = {code: 2, status: 400, name: 'Bad Request'}
+  if (message.code && message.error) {
+    response.code = message.code
+    response.error = message.error
+  } else {
+    response.error = message
+  }
   res.status(400).json(response)
 }
 
 function unauthorized (res, message = 'Your request was made with invalid credentials') {
   const response = {code: 0, status: 401, name: 'Unauthorized', message}
+  
   res.status(401).json(response)
 }
 

@@ -1,5 +1,5 @@
 import Response from '../../../services/response/Response'
-import Usuario from '../../../models/index'
+import Usuario from '../../../models/test'
 class TestController {
   static async test (req, res, next) {
     try {

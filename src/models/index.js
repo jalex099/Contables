@@ -1,17 +1,5 @@
-import mongoose, { Schema } from 'mongoose'
-import mongoosePaginate from 'mongoose-paginate-v2'
-const modelName = 'usuarios'
+import AccountingSeatsModel from './accountingSeats'
+import AccountsModel from './accounts'
+import TransactionsModel from './transactions'
 
-const schema = new Schema({
-  nombre: {type: String},
-  usuario: {type: String}
-}, {
-  versionKey: false
-})
-
-schema.methods = {}
-
-schema.plugin(mongoosePaginate)
-const model = mongoose.model(modelName, schema)
-
-export default model
+export {AccountingSeatsModel, AccountsModel, TransactionsModel}
