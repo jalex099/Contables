@@ -1,9 +1,10 @@
 import Response from '../../../services/response/Response'
-
+import Usuario from '../../../models/index'
 class TestController {
-  static test (req, res, next) {
+  static async test (req, res, next) {
     try {
-      return Response.success(res, {message: 'ok'})
+      const usuarios = await Usuario.find({})
+      return Response.success(res, usuarios)
     } catch (error) {
       console.log(error)
       return res.json({error})

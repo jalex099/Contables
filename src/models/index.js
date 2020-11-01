@@ -1,11 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 import mongoosePaginate from 'mongoose-paginate-v2'
-const modelName = 'TestCollection'
+const modelName = 'usuarios'
 
 const schema = new Schema({
-  test_field: {
-    type: String
-  }
+  nombre: {type: String},
+  usuario: {type: String}
 }, {
   versionKey: false
 })

@@ -7,5 +7,20 @@
 </head>
 <body>
     Este archivo esta en la carpeta publica del proyecto
+
+    <script>
+        (async () => {
+            const options = {
+                method: 'GET',
+                header: {
+                    'Content-Type': 'application/json'
+                }
+            }
+            const url = '/v1/ping'
+            const requestResult = await fetch(url, options)
+            const requestJson = await requestResult.json()
+            console.log(requestResult)
+        })()
+    </script>
 </body>
 </html>
