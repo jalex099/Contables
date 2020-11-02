@@ -36,6 +36,9 @@ import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
+  created: function() {
+           window.document.title = "Sistemas Contables"
+       },
   components: {
     HelloWorld
   }
