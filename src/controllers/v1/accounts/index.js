@@ -18,6 +18,7 @@ class AccountsController {
 
   static async list (req, res, next) {
     try {
+      req.query.limit = 1000000
       const { filter, options } = paginateOptions(req.query)
       let accounts = await AccountsModel.paginate(filter, options)
       accounts.items = Account.organize(accounts.items)
