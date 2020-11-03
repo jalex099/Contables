@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Proyecto Contables
 Proyecto de sistemas contables en el cual se permitira llevar el control contable de una empresa
 
@@ -21,3 +22,7 @@ git clone https://github.com/jalex099/Contables.git
 npm i
 npm run dev
 ```
+=======
+# Contables
+Proyecto de la materia "Sistemas Contables" Ciclo 02/2020
+>>>>>>> e6fe04b6e4640e74bcfdb050fce59b6186d33440
