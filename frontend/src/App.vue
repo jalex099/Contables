@@ -18,15 +18,15 @@
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">Title</span>
             <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
+              <a class="mdl-navigation__link" href="">Inicio</a>
+              <a class="mdl-navigation__link" href="">Asientos Contables</a>
+              <a class="mdl-navigation__link" href="">Nuevo asiento</a>
             </nav>
         </div>
         <main class="mdl-layout__content">
             <div class="page-content"><!-- Your content goes here -->
-  <HelloWorld msg="Welcome to Your Vue.js App"/></div>
+              <HelloWorld msg="Welcome to Your Vue.js App"/>
+            </div>
         </main>
         </div>
 </template>
