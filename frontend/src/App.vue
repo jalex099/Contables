@@ -25,14 +25,14 @@
         </div>
         <main class="mdl-layout__content">
             <div class="page-content"><!-- Your content goes here -->
-              <HelloWorld msg="Welcome to Your Vue.js App"/>
+              <NuevaPartida/>
             </div>
         </main>
         </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NuevaPartida from './components/NuevaPartida.vue'
 
 export default {
   name: 'App',
@@ -40,7 +40,7 @@ export default {
            window.document.title = "Sistemas Contables"
        },
   components: {
-    HelloWorld
+    NuevaPartida
   }
 }
 </script>
