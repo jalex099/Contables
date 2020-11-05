@@ -26,15 +26,37 @@
     </tr>
   </tbody>
 </table>
+
+<button @click="getUsers">GetUsers</button>
+<ul>
+  <li v-for="user in users" :key="user.id">{{user.name}}</li>
+</ul>
   </div>
   
 </template>
 
 <script>
+
 export default {
   name: 'VerAsientos',
-  props: {
-    msg: String
+  data: ()=>{
+    return{
+      users:[]
+    }
+  },
+  methods:{
+    getUsers(){
+      fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res =>{
+        return res.json()
+      }) 
+      .then(data =>{
+        this.users = data;
+      })
+      .catch(error =>{
+        console.log(error)
+      })
+    }
   }
 }
 </script>
