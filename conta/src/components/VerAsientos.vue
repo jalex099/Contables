@@ -29,7 +29,7 @@
 
 <button @click="getUsers">GetUsers</button>
 <ul>
-  <li v-for="user in users" :key="user.id">{{user.name}}</li>
+  <li v-for="cuenta in cuentas" :key="cuenta.id">{{cuenta["name"]}} - {{cuenta["type"]}}</li>
 </ul>
   </div>
   
@@ -41,17 +41,18 @@ export default {
   name: 'VerAsientos',
   data: ()=>{
     return{
-      users:[]
+      cuentas:[]
     }
   },
   methods:{
     getUsers(){
-      fetch("https://jsonplaceholder.typicode.com/users")
+      fetch("https://sistemas-contables.herokuapp.com/v1/accounts")
       .then(res =>{
         return res.json()
       }) 
       .then(data =>{
-        this.users = data;
+        this.cuentas = data["items"]
+        console.log(this.cuentas['items'][0]['name'])
       })
       .catch(error =>{
         console.log(error)
