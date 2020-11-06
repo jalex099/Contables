@@ -1,20 +1,35 @@
 <template>
   <div>
-    <div v-for="item in items" :key="item">
-      <h2>{{item.nombre}}</h2>
-      <h6>{{item.edad}}</h6>
-    </div>
     <h2>Nueva Partida</h2>
-    
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="sample3" v-model="newName">
-      <label class="mdl-textfield__label" for="sample3" >name...</label>
-      <button @click="addName">AddName</button>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="sample3" v-model="newAge">
-      <label class="mdl-textfield__label" for="sample3">Text...</label>
-    </div>
+    <button v-if="!bandera" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" @click="show">
+      Crear Partida
+    </button>
+      <div v-if="bandera">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <select class="mdl-textfield__input" id="cuentas" name="cuentas">
+            <option></option>
+            
+            <option v-for="cuenta in cuentas" :key="cuenta" value="85">{{cuenta}}</option>
+          </select>
+          <label class="mdl-textfield__label" for="cuentas">Cuentas</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
+          <label class="mdl-textfield__label" for="sample4">Number...</label>
+          <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="242" v-model="newName">
+          <label class="mdl-textfield__label" for="445" >name...</label>
+        </div>
+        
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="sample3" v-model="newAge">
+          <label class="mdl-textfield__label" for="sample3">Text...</label>
+        </div>
+        
+          <button @click="addName">AddName</button>
+      </div>
   </div>
 </template>
 
@@ -22,9 +37,14 @@
 
 export default {
   name: 'NuevaPartida',
+  props:{
+    par: Array
+  },
   data: ()=>{
     return{
-      items: [{"nombre":"Javier", "edad":21},{"nombre":"Maria", "edad":22}]
+      items: [{"nombre":"Javier", "edad":21},{"nombre":"Maria", "edad":22}],
+      cuentas: [],
+      bandera:Boolean
     }
   },
   methods: {
@@ -34,7 +54,24 @@ export default {
 
         this.newName = "";
       }
+    },
+    show(){
+      this.cuentas=[];
+      this.par.forEach(element => {
+             element['sub_accounts'].forEach(elemen => {
+               elemen['sub_accounts'].forEach(eleme => {
+               this.cuentas.push(eleme.name)
+             });
+             });
+             
+           });
+           this.bandera = true;
     }
+  },
+  created: function(){
+    this.bandera = false;
+    this.newName= "";
+    this.newAge = 0
   }
 }
 
