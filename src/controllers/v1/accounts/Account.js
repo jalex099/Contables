@@ -52,7 +52,7 @@ class Account {
       const {parent_id: parentId, name} = payload
       console.log(parentId, name)
       const searchResult = await AccountsModel.find({parent_id: parentId, name})
-      
+
       return searchResult.length > 0
     } catch (error) {
       return true
