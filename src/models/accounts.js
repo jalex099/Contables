@@ -12,6 +12,15 @@ const schema = new Schema({
 })
 
 schema.methods = {
+  simpleView () {
+    return {
+      id: this._id,
+      parent_id: this.parent_id,
+      name: this.name,
+      type: this.type,
+      current_amount: this.current_amount
+    }
+  }
 }
 
 schema.plugin(mongoosePaginate)

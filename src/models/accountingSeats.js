@@ -10,7 +10,15 @@ const schema = new Schema({
   versionKey: false
 })
 
-schema.methods = {}
+schema.methods = {
+  simpleView () {
+    return {
+      id: this._id,
+      date: this.date,
+      description: this.description
+    }
+  }
+}
 
 schema.plugin(mongoosePaginate)
 const model = mongoose.model(modelName, schema)
