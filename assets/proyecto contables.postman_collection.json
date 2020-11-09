@@ -1,0 +1,445 @@
+{
+	"info": {
+		"_postman_id": "7bdbba5c-9ff2-473a-bb71-6918d2f96255",
+		"name": "proyecto contables",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "AccountsList",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/v1/accounts",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"accounts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "AccountsList ",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/v1/accounts",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"v1",
+										"accounts"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"sub_account\": [\r\n            \r\n        ],\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    }\r\n]"
+						}
+					]
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Debito Fiscal IVA\",\r\n    \"parent_id\": \"5f9f1dbbf4bf1e07ef79cbff\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/v1/accounts",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"accounts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "AccountsList ",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/v1/accounts",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"v1",
+										"accounts"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"sub_account\": [\r\n            \r\n        ],\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    }\r\n]"
+						}
+					]
+				},
+				{
+					"name": "AccountsDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Caja Chica\",\r\n    \"parent_id\": \"5f9f117134b8ca069be4a150\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/v1/accounts/5f9f1741438faf071fc45d6e",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								"5f9f1741438faf071fc45d6e"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "AccountsList ",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/v1/accounts",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"v1",
+										"accounts"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"sub_account\": [\r\n            \r\n        ],\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    }\r\n]"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "AccountingSeat",
+			"item": [
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Constitucion de la sociedad\",\r\n    \"date\": \"YYYY-MM-DDTHH-mm-ss\",\r\n    \"transaction\": {\r\n        \"haber\": [\r\n            {\r\n                \"account_id\": \"12345\",\r\n                \"amount\": 45.5\r\n            }\r\n        ],\r\n        \"deber\": [\r\n            {\r\n                \"account_id\": \"12345\",\r\n                \"amount\": \"12345\"\r\n            }\r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/v1/accounting-seat",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"accounting-seat"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "AccountingSeatCreate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Constitucion de la sociedad\",\r\n    \"date\": \"YYYY-MM-DDTHH-mm-ss\",\r\n    \"transaction\": {\r\n        \"haber\": [\r\n            {\r\n                \"account_id\": \"12345\",\r\n                \"amount\": 45.5\r\n            }\r\n        ],\r\n        \"deber\": [\r\n            {\r\n                \"account_id\": \"12345\",\r\n                \"amount\": \"12345\"\r\n            }\r\n        ]\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/v1/accounting-seat",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"v1",
+										"accounting-seat"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"_id\": \"123456\",\r\n    \"description\": \"Constitucion de la sociedad\",\r\n    \"date\": \"YYYY-MM-DDTHH-mm-ss\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Constitucion de la sociedad\",\r\n    \"date\": \"2020-11-08T16-38-00\",\r\n    \"debit\": [\r\n        {\r\n            \"account_id\": \"5f9f067c5dc4d0042ee648b5\",\r\n            \"amount\": 15\r\n        },\r\n        {\r\n            \"account_id\": \"5f9f119634b8ca069be4a152\",\r\n            \"amount\": 30\r\n        }\r\n    ],\r\n    \"credit\": [\r\n        {\r\n            \"account_id\": \"5fa1ca838d447e2c68a531a2\",\r\n            \"amount\": 45\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/v1/accounting-seat",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"accounting-seat"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "AccountingSeatCreate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Constitucion de la sociedad\",\r\n    \"date\": \"YYYY-MM-DDTHH-mm-ss\",\r\n    \"transaction\": {\r\n        \"haber\": [\r\n            {\r\n                \"account_id\": \"12345\",\r\n                \"amount\": 45.5\r\n            }\r\n        ],\r\n        \"deber\": [\r\n            {\r\n                \"account_id\": \"12345\",\r\n                \"amount\": \"12345\"\r\n            }\r\n        ]\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/v1/accounting-seat",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"v1",
+										"accounting-seat"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"_id\": \"123456\",\r\n    \"description\": \"Constitucion de la sociedad\",\r\n    \"date\": \"YYYY-MM-DDTHH-mm-ss\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "create Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Constitucion de la sociedad\",\r\n    \"date\": \"YYYY-MM-DDTHH-mm-ss\",\r\n    \"transaction\": {\r\n        \"haber\": [\r\n            {\r\n                \"account_id\": \"12345\",\r\n                \"amount\": 45.5\r\n            }\r\n        ],\r\n        \"deber\": [\r\n            {\r\n                \"account_id\": \"12345\",\r\n                \"amount\": \"12345\"\r\n            }\r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/v1/accounting-seat/1",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"accounting-seat",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "AccountingSeatCreate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Constitucion de la sociedad\",\r\n    \"date\": \"YYYY-MM-DDTHH-mm-ss\",\r\n    \"transaction\": {\r\n        \"haber\": [\r\n            {\r\n                \"account_id\": \"12345\",\r\n                \"amount\": 45.5\r\n            }\r\n        ],\r\n        \"deber\": [\r\n            {\r\n                \"account_id\": \"12345\",\r\n                \"amount\": \"12345\"\r\n            }\r\n        ]\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/v1/accounting-seat",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"v1",
+										"accounting-seat"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"_id\": \"123456\",\r\n    \"description\": \"Constitucion de la sociedad\",\r\n    \"date\": \"YYYY-MM-DDTHH-mm-ss\"\r\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "settings",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/v1/settings",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"efectivo\",\r\n    \"label\": \"Efectivo Equivalente\",\r\n    \"value\": \"5f9f117134b8ca069be4a150\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/v1/settings",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/v1/settings/1",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"settings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/v1/test",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/v1/test",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1",
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
