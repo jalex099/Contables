@@ -5,23 +5,25 @@
       Crear Partida
     </button>
       <div v-if="bandera">
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <select class="mdl-textfield__input" id="cuentas" name="cuentas">
+        <div class="form-group">
+          <label for="exampleFormControlSelect2">Elegir cuenta</label>
+          <select class="form-control form-control-lg" id="cuentas" name="cuentas">
             <option></option>
             
-            <option v-for="cuenta in cuentas" :key="cuenta" value="85">{{cuenta}}</option>
+            <option v-for="cuenta in cuentas" :key="cuenta" value="85">{{cuenta.name}}</option>
           </select>
-          <label class="mdl-textfield__label" for="cuentas">Cuentas</label>
         </div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
-          <label class="mdl-textfield__label" for="sample4">Number...</label>
-          <span class="mdl-textfield__error">Input is not a number!</span>
-        </div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" id="242" v-model="newName">
-          <label class="mdl-textfield__label" for="445" >name...</label>
-        </div>
+          <div class="form-group">
+            <label for="debe">Debe</label>
+            <input type="number" class="form-control w-50" id="debe" placeholder="Debe">
+          </div>
+
+        <div class="form-group">
+            <label for="haber">Haber</label>
+            <input type="number" class="form-control w-50" id="haber" placeholder="Haber">
+          </div>
+
+          <button type="button" class="btn btn-secondary btn-lg btn-block">Añadir Cuenta a Partida</button>
         
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <input class="mdl-textfield__input" type="text" id="sample3" v-model="newAge">
@@ -60,7 +62,7 @@ export default {
       this.par.forEach(element => {
              element['sub_accounts'].forEach(elemen => {
                elemen['sub_accounts'].forEach(eleme => {
-               this.cuentas.push(eleme.name)
+               this.cuentas.push(eleme)
              });
              });
              

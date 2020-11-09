@@ -25,6 +25,7 @@ export default {
   },
   created: 
     async function () {
+      window.document.title = "Asientos Contables"
       fetch("https://sistemas-contables.herokuapp.com/v1/accounts")
           .then(res =>{
             return res.json()

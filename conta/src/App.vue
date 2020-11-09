@@ -31,6 +31,7 @@
         </div>
 </template>
 
+
 <style>
 *{
   font-family: 'Quicksand', sans-serif;
