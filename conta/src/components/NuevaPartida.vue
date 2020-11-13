@@ -6,37 +6,30 @@
     </button>
       <div v-if="bandera">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <select class="mdl-textfield__input" id="cuentas" name="cuentas">
-            <option></option>
-            
-            <option v-for="cuenta in cuentas" :key="cuenta" value="85">{{cuenta}}</option>
-          </select>
-          <label class="mdl-textfield__label" for="cuentas">Cuentas</label>
+          <b-form-select class="mdl-textfield__input" id="cuentas" name="cuentas" v-model="selected">
+            <OptionsNuevaPartida v-for="cuenta in cuentas" :key="cuenta" v-bind:cuenta="cuenta"/>
+          </b-form-select>
+          <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
         </div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
-          <label class="mdl-textfield__label" for="sample4">Number...</label>
-          <span class="mdl-textfield__error">Input is not a number!</span>
-        </div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" id="242" v-model="newName">
-          <label class="mdl-textfield__label" for="445" >name...</label>
-        </div>
+        <b-row>
+           <b-col><div class="mb-2">Debe:</div></b-col>
+          <b-col cols="8"><b-form-input type="number" class="w-100" v-model="text"></b-form-input></b-col>
+          <b-col><div class="mt-2">Value: {{ text }}</div></b-col>
+        </b-row>
         
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" id="sample3" v-model="newAge">
-          <label class="mdl-textfield__label" for="sample3">Text...</label>
-        </div>
         
-          <button @click="addName">AddName</button>
+          <b-button variant="success" class="w-50" @click="addName">Agregar cuenta</b-button>
       </div>
   </div>
 </template>
 
 <script>
-
+import OptionsNuevaPartida from '@/components/OptionsNuevaPartida.vue'
 export default {
   name: 'NuevaPartida',
+  components:{
+    OptionsNuevaPartida
+  },
   props:{
     par: Array
   },
@@ -44,7 +37,9 @@ export default {
     return{
       items: [{"nombre":"Javier", "edad":21},{"nombre":"Maria", "edad":22}],
       cuentas: [],
-      bandera:Boolean
+      bandera:Boolean,
+      selected:"",
+      text:""
     }
   },
   methods: {
@@ -60,7 +55,7 @@ export default {
       this.par.forEach(element => {
              element['sub_accounts'].forEach(elemen => {
                elemen['sub_accounts'].forEach(eleme => {
-               this.cuentas.push(eleme.name)
+               this.cuentas.push(eleme)
              });
              });
              
