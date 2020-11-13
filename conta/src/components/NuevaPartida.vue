@@ -5,6 +5,17 @@
       Crear Partida
     </button>
       <div v-if="bandera">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <b-form-select class="mdl-textfield__input" id="cuentas" name="cuentas" v-model="selected">
+            <OptionsNuevaPartida v-for="cuenta in cuentas" :key="cuenta" v-bind:cuenta="cuenta"/>
+          </b-form-select>
+          <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+        </div>
+        <b-row>
+           <b-col><div class="mb-2">Debe:</div></b-col>
+          <b-col cols="8"><b-form-input type="number" class="w-100" v-model="text"></b-form-input></b-col>
+          <b-col><div class="mt-2">Value: {{ text }}</div></b-col>
+        </b-row>
         <div class="form-group">
           <label for="exampleFormControlSelect2">Elegir cuenta</label>
           <select class="form-control form-control-lg" id="cuentas" name="cuentas">
@@ -24,21 +35,19 @@
           </div>
 
           <button type="button" class="btn btn-secondary btn-lg btn-block">Añadir Cuenta a Partida</button>
-        
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" id="sample3" v-model="newAge">
-          <label class="mdl-textfield__label" for="sample3">Text...</label>
-        </div>
-        
-          <button @click="addName">AddName</button>
+
+          <b-button variant="success" class="w-50" @click="addName">Agregar cuenta</b-button>
       </div>
   </div>
 </template>
 
 <script>
-
+import OptionsNuevaPartida from '@/components/OptionsNuevaPartida.vue'
 export default {
   name: 'NuevaPartida',
+  components:{
+    OptionsNuevaPartida
+  },
   props:{
     par: Array
   },
@@ -46,7 +55,9 @@ export default {
     return{
       items: [{"nombre":"Javier", "edad":21},{"nombre":"Maria", "edad":22}],
       cuentas: [],
-      bandera:Boolean
+      bandera:Boolean,
+      selected:"",
+      text:""
     }
   },
   methods: {

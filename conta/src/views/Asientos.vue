@@ -49,7 +49,7 @@ export default {
 }
 
 .sin-espacio{
-  padding: 0;
+  padding: 2rem;
   margin: 0;
 }
 </style>
