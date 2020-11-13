@@ -13,6 +13,9 @@ export default {
   name: 'Home',
   components: {
     HelloWorld
+  },
+  created: function (){
+    window.document.title = "Home"
   }
 }
 </script>
