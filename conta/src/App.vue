@@ -1,34 +1,36 @@
 <template>
-  <!-- Always shows a header, even in smaller screens. -->
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-            <!-- Title -->
-            <span class="mdl-layout-title" style="font-family: 'Quicksand', sans-serif;">Sistemas Contables</span>
-            <!-- Add spacer, to align navigation to the right -->
-            <div class="mdl-layout-spacer"></div>
-            <!-- Navigation. We hide it in small screens. -->
-            <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <router-link to="/" class="mdl-navigation__link">Home</router-link>
-                <router-link to="/about" class="mdl-navigation__link">About</router-link>
-                <router-link to="/asientos" class="mdl-navigation__link">Asientos Contables</router-link>
-            </nav>
-            </div>
-        </header>
-        <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title" style="font-family: 'Quicksand', sans-serif;">Sistemas Contables</span>
-            <nav class="mdl-navigation">
-              <router-link to="/" class="mdl-navigation__link">Home</router-link>
-                <router-link to="/about" class="mdl-navigation__link">About</router-link>
-                <router-link to="/asientos" class="mdl-navigation__link">Asientos Contables</router-link>
-            </nav>
-        </div>
-        <main class="mdl-layout__content">
-            <div class="page-content"><!-- Your content goes here -->
-              <router-view/>
-            </div>
-        </main>
-        </div>
+
+<div>
+  <div>
+  <!-- As a heading -->
+  <b-navbar toggleable type="light" variant="light">
+    <b-navbar-brand href="#">Contabilidad</b-navbar-brand>
+
+    <b-navbar-toggle target="navbar-toggle-collapse">
+      <template #default="{ expanded }">
+        <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
+        <b-icon v-else icon="chevron-bar-down"></b-icon>
+      </template>
+    </b-navbar-toggle>
+
+    <b-collapse id="navbar-toggle-collapse" is-nav>
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item>
+          <router-link to="/" class="mdl-navigation__link">Home</router-link>
+        </b-nav-item>
+        <b-nav-item >
+           <router-link to="/about" class="mdl-navigation__link">About</router-link>
+        </b-nav-item>
+        <b-nav-item> 
+          <router-link to="/asientos" class="mdl-navigation__link">Asientos Contables</router-link>
+        </b-nav-item>
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
+</div>
+<router-view/>
+</div>
+ 
 </template>
 
 <script>
