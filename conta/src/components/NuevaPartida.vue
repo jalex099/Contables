@@ -5,7 +5,6 @@
       Crear Partida
     </button>
       <div v-if="bandera">
-<<<<<<< HEAD
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <b-form-select class="mdl-textfield__input" id="cuentas" name="cuentas" v-model="selected">
             <OptionsNuevaPartida v-for="cuenta in cuentas" :key="cuenta" v-bind:cuenta="cuenta"/>
@@ -17,27 +16,6 @@
           <b-col cols="8"><b-form-input type="number" class="w-100" v-model="text"></b-form-input></b-col>
           <b-col><div class="mt-2">Value: {{ text }}</div></b-col>
         </b-row>
-=======
-        <div class="form-group">
-          <label for="exampleFormControlSelect2">Elegir cuenta</label>
-          <select class="form-control form-control-lg" id="cuentas" name="cuentas">
-            <option></option>
-            
-            <option v-for="cuenta in cuentas" :key="cuenta" value="85">{{cuenta.name}}</option>
-          </select>
-        </div>
-          <div class="form-group">
-            <label for="debe">Debe</label>
-            <input type="number" class="form-control w-50" id="debe" placeholder="Debe">
-          </div>
-
-        <div class="form-group">
-            <label for="haber">Haber</label>
-            <input type="number" class="form-control w-50" id="haber" placeholder="Haber">
-          </div>
-
-          <button type="button" class="btn btn-secondary btn-lg btn-block">Añadir Cuenta a Partida</button>
->>>>>>> 8ac1e5ecfbaf2c12370d50de7e2eaa68d7944743
         
         
           <b-button variant="success" class="w-50" @click="addName">Agregar cuenta</b-button>
