@@ -30,7 +30,6 @@
         </main>
         </div>
 </template>
-<<<<<<< HEAD
 <script>
 import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -44,10 +43,6 @@ export default {
   
 }
 </script>
-=======
-
-
->>>>>>> 8ac1e5ecfbaf2c12370d50de7e2eaa68d7944743
 <style>
 *{
   font-family: 'Quicksand', sans-serif;
