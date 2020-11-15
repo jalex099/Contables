@@ -1,9 +1,7 @@
 <template>
   <div>
       <h2>Nueva Partida</h2>
-      <button v-if="!bandera" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" @click="show">
-        Crear Partida
-      </button>
+      <b-button v-if="!bandera" variant="success" class="w-100 p-3 mx-3 my-3" @click="show">Crear Partida</b-button>
       <div v-if="bandera" class="w-100">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
           <b-form-select class="mdl-textfield__input w-100" id="cuentas" name="cuentas" v-model="selected">
