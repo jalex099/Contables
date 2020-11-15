@@ -1,7 +1,6 @@
 <template>
   <div>
     <h2>Nueva Partida</h2>
-
     <button v-if="!bandera" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" @click="show">
       Crear Partida
     </button>
@@ -18,23 +17,27 @@
           </b-form-select>
           <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
         </div>
-        <b-row>
-           <b-col><div class="mb-2">Debe:</div></b-col>
-          <b-col cols="8"><b-form-input type="number" class="w-100" v-model="text"></b-form-input></b-col>
-          <b-col><div class="mt-2">Value: {{ text }}</div></b-col>
+
+        <!-- checked button for the debot or credit-->
+        <div>
+          <b-form-checkbox v-model="checked" name="check-button" switch>
+            Debe / Haber <b>(Tipo: <span v-if="checked">Haber</span> <span v-if="!checked">Debe</span>)</b>
+          </b-form-checkbox>
+        </div>
+        <b-row class="p-3">
+           <b-col cols="2"><div class="my-auto"><span v-if="checked">Haber:</span> <span v-if="!checked">Debe:</span></div></b-col>
+          <b-col cols="5"><b-form-input type="number" class="w-100 my-auto" v-model="mount"></b-form-input></b-col>
+          <b-col cols="5"><span class="my-auto">Value: {{ text }}</span></b-col>
         </b-row>
-
-        
-        
-          <b-button variant="success" class="w-50" @click="addName">Agregar cuenta</b-button>
-
         <b-row>
-           <b-col><b-button variant="secondary" class="w-100 p-3 mx-3 my-3" @click="addName">Añadir cuenta a partida</b-button></b-col>
-          <b-col><b-button variant="success" class="w-100 p-3 mx-3 my-3" @click="addName">Agregar cuenta</b-button></b-col>
+           <b-col><b-button variant="secondary" class="w-100 p-3 mx-3 my-3" @click="addCuenta">Añadir cuenta a partida</b-button></b-col>
+          <b-col><b-button variant="success" class="w-100 p-3 mx-3 my-3" @click="addCuenta">Agregar cuenta</b-button></b-col>
         </b-row>
           
 
       </div>
+      <div class="">{{debit}}</div>
+      <div class="">{{credit}}</div>
   </div>
 </template>
 
@@ -54,15 +57,27 @@ export default {
       cuentas: [],
       bandera:Boolean,
       selected:"",
-      text:""
+      mount:"",
+      checked:false,
+      debit: [],
+      credit: []
     }
   },
   methods: {
-    addName(){
-      if(this.newName != "" && this.newAge!= ""){
-        this.items.push({"nombre": this.newName, "edad": this.newAge});
+    addCuenta(){
+      //debit
+      if(this.selected != "" && this.mount!= "" && !this.checked){
+        this.debit.push({"_id": this.selected, "mount": this.mount});
 
-        this.newName = "";
+        this.selected = "";
+        this.mount = ""
+      } 
+      
+      if(this.selected != "" && this.mount!= "" && this.checked){
+        this.credit.push({"_id": this.selected, "mount": this.mount});
+
+        this.selected = "";
+        this.mount = ""
       }
     },
     show(){
