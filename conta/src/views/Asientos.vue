@@ -1,10 +1,12 @@
 <template>
-  <div class="mdl-grid sin-espacio">
-    <div class = "mdl-cell mdl-cell--7-col graybox sin-espacio">
-      <VerAsientos v-bind:par="cuentas"/>
-    </div>
-    <div class = "mdl-cell mdl-cell--5-col graybox sin-espacio"><NuevaPartida v-bind:par="cuentas"/></div>
-  </div>
+<b-row class="w-100">
+  <b-col  class="py-3">
+    <VerAsientos v-bind:par="cuentas"/>
+  </b-col>
+  <b-col cols="4" class="py-3">
+    <NuevaPartida v-bind:par="cuentas"/>
+  </b-col>
+</b-row>
 </template>
 
 <script>
