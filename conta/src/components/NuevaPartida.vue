@@ -1,11 +1,18 @@
 <template>
   <div>
     <h2>Nueva Partida</h2>
-    
+    <button v-if="!bandera" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" @click="show">
+      Crear Partida
+    </button>
+      <div v-if="bandera">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <b-form-select class="mdl-textfield__input" id="cuentas" name="cuentas" v-model="selected">
+
       <b-button v-if="!bandera" variant="success" class="w-100 p-3 mx-3 my-3" @click="show">Agregar partida</b-button>
       <div v-if="bandera" class="w-100">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
           <b-form-select class="mdl-textfield__input w-100" id="cuentas" name="cuentas" v-model="selected">
+
             <OptionsNuevaPartida v-for="cuenta in cuentas" :key="cuenta" v-bind:cuenta="cuenta"/>
           </b-form-select>
           <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
@@ -27,6 +34,7 @@
           <b-col><b-button variant="success" class="w-100 p-3 mx-3 my-3" @click="addCuenta">Agregar cuenta</b-button></b-col>
         </b-row>
           
+
       </div>
       <div class="">{{debit}}</div>
       <div class="">{{credit}}</div>
