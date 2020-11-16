@@ -1,4 +1,5 @@
-function paginateOptions ({filter, page, limit}) {
+import { setFilterFormat } from './filters'
+function paginateOptions ({filter, page, limit, sort}) {
   const customLabels = {
     totalDocs: 'total_items',
     docs: 'items',
@@ -10,12 +11,14 @@ function paginateOptions ({filter, page, limit}) {
     pagingCounter: 'page',
     meta: 'paginator'
   }
+  if (filter) filter = setFilterFormat(filter)
   return {
     filter: filter || {},
     options: {
       page: parseInt(page) || 1,
       limit: parseInt(limit) || 20,
-      customLabels
+      customLabels,
+      sort: sort || null
     }
   }
 }

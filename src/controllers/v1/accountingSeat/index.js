@@ -18,10 +18,10 @@ class AccountingSeatController {
 
   static async list (req, res, next) {
     try {
-      req.query.limit = 1000000
       const { filter, options } = paginateOptions(req.query)
-      let transactions = await AccountingSeatsModel.paginate(filter, options)
-      return Response.success(res, transactions)
+      let seats = await AccountingSeatsModel.paginate(filter, options)
+      seats.items = await AccountingSeat.setTransactions(seats.items)
+      return Response.success(res, seats)
     } catch (error) {
       return Response.badRequest(res, {message: 'bad request'})
     }
