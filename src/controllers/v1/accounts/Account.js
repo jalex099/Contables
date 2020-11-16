@@ -1,4 +1,4 @@
-import { AccountsModel } from '../../../models'
+import { AccountsModel, TransactionsModel, AccountingSeatsModel } from '../../../models'
 
 class Account {
   static organize (accountsList, accountsOrganized = []) {
@@ -40,6 +40,11 @@ class Account {
         account = Account.setSubcategories(accountsList, account)
         return account
       })
+      const subCategoryTotal = subAccounts.reduce((prev, account) => {
+        prev += account.current_amount
+        return prev
+      }, 0)
+      account.current_amount += subCategoryTotal
       return account
     } catch (error) {
       console.log(error)
@@ -56,6 +61,39 @@ class Account {
       return searchResult.length > 0
     } catch (error) {
       return true
+    }
+  }
+
+  static async setTransactions (account) {
+    try {
+      const transactions = await TransactionsModel.find({account_id: account._id}).sort({date: 'desc'})
+      const seatIds = transactions.map(transaction => String(transaction.accounting_seat_id))
+      const seats = await AccountingSeatsModel.find({_id: {$in: seatIds}})
+
+      const credit = transactions.filter(transaction => transaction.account_id === String(account._id) && transaction.type === 'credit')
+      const debit = transactions.filter(transaction => transaction.account_id === String(account._id) && transaction.type === 'debit')
+
+      account.transactions = {credit: [], debit: []}
+      account.transactions.credit = credit.map(transaction => {
+        const [seat] = seats.filter(seat => String(seat._id) === transaction.accounting_seat_id)
+        return {
+          date: seat.date,
+          seat: seat.description,
+          amount: transaction.amount
+        }
+      })
+      account.transactions.debit = debit.map(transaction => {
+        const [seat] = seats.filter(seat => String(seat._id) === transaction.accounting_seat_id)
+        return {
+          date: seat.date,
+          seat: seat.description,
+          amount: transaction.amount
+        }
+      })
+      return account
+    } catch (error) {
+      console.log(error)
+      return account
     }
   }
 }

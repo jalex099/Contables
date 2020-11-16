@@ -12,7 +12,7 @@ class AccountsController {
     router.get('/', AccountsController.list)
     router.post('/', AccountsController.create)
     router.delete('/:accountId', AccountsController.delete)
-
+    router.get('/:accountId/transactions', AccountsController.transactions)
     return router
   }
 
@@ -63,6 +63,20 @@ class AccountsController {
       console.log(accountId)
       const result = await AccountsModel.deleteOne({_id: accountId})
       return Response.success(res, result)
+    } catch (error) {
+      return Response.notFound(res, 'Account not Found')
+    }
+  }
+  static async transactions (req, res, next) {
+    try {
+      const { accountId } = req.params
+      let accounts = await AccountsModel.find({})
+      accounts = Account.parse(accounts)
+      let [account] = accounts.filter(account => String(account._id) === accountId)
+      account = Account.setSubcategories(accounts, account)
+      account = await Account.setTransactions(account)
+      delete account.sub_accounts
+      return Response.success(res, account)
     } catch (error) {
       return Response.notFound(res, 'Account not Found')
     }
