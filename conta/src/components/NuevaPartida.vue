@@ -18,7 +18,7 @@
         </div>
         <b-row class="p-3">
            <b-col cols="2"><div class="my-auto"><span v-if="checked">Haber:</span> <span v-if="!checked">Debe:</span></div></b-col>
-          <b-col cols="5"><b-form-input type="number" class="w-100 my-auto" v-model="mount"></b-form-input></b-col>
+          <b-col cols="5"><b-form-input type="number" class="w-100 my-auto" v-model.number="mount"></b-form-input></b-col>
           <b-col cols="5"><span class="my-auto">Value: {{ text }}</span></b-col>
         </b-row>
         <b-row>
@@ -48,7 +48,7 @@ export default {
       cuentas: [],
       bandera:Boolean,
       selected:"",
-      mount:"",
+      mount:Number,
       checked:false,
       debit: [],
       credit: []
@@ -87,8 +87,8 @@ export default {
   },
   created: function(){
     this.bandera = false;
-    this.newName= "";
-    this.newAge = 0
+    this.selected= "";
+    this.mount = 0
   }
 }
 </script>
