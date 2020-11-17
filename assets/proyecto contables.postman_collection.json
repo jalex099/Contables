@@ -49,6 +49,102 @@
 					]
 				},
 				{
+					"name": "AccountsTransactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/v1/accounts/5fa1ca838d447e2c68a531a2/transactions",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								"5fa1ca838d447e2c68a531a2",
+								"transactions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "AccountsList ",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/v1/accounts",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"v1",
+										"accounts"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"sub_account\": [\r\n            \r\n        ],\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    },\r\n    {\r\n        \"_id\": \"123456789\",\r\n        \"name\": \"account name\",\r\n        \"parent_id\": \"123456789\",\r\n        \"type\": \"haber\",\r\n        \"current_amount\": 45\r\n    }\r\n]"
+						},
+						{
+							"name": "AccountsTransactions list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/v1/accounts/5fa1ca838d447e2c68a531a2/transactions",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										"5fa1ca838d447e2c68a531a2",
+										"transactions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "428"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 16 Nov 2020 03:47:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"5fa1ca838d447e2c68a531a2\",\n    \"name\": \"Capital Social\",\n    \"current_amount\": 159,\n    \"type\": \"credit\",\n    \"parent_id\": \"5f9f1dd1f4bf1e07ef79cc00\",\n    \"transactions\": {\n        \"credit\": [\n            {\n                \"date\": \"2020-11-08T22:38:00.000Z\",\n                \"seat\": \"Constitucion de la sociedad\",\n                \"amount\": 45\n            },\n            {\n                \"date\": \"2020-11-08T22:38:00.000Z\",\n                \"seat\": \"Constitucion de la sociedad\",\n                \"amount\": 45\n            },\n            {\n                \"date\": \"2020-11-08T22:38:00.000Z\",\n                \"seat\": \"Constitucion de la sociedad\",\n                \"amount\": 45\n            }\n        ],\n        \"debit\": []\n    }\n}"
+						}
+					]
+				},
+				{
 					"name": "create",
 					"request": {
 						"method": "POST",
@@ -171,13 +267,35 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}/v1/accounting-seat",
+							"raw": "{{HOST}}/v1/accounting-seat?sort[date]=desc",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
 								"v1",
 								"accounting-seat"
+							],
+							"query": [
+								{
+									"key": "filter[_id]",
+									"value": "5fa8749d9ca2ee029f9bf488",
+									"disabled": true
+								},
+								{
+									"key": "filter[date]",
+									"value": "2021-11-08T22:38:00.000Z",
+									"description": "2020-11-08T22:38:00.000Z",
+									"disabled": true
+								},
+								{
+									"key": "filter[date]",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "sort[date]",
+									"value": "desc"
+								}
 							]
 						}
 					},
