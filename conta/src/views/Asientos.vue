@@ -1,6 +1,7 @@
 <template>
 <b-row class="w-100">
   <b-col cols="12" class="py-3">
+    <b-alert show variant="light" style="font-size:2rem">- Nueva partida -</b-alert>
     <NuevaPartida v-bind:par="cuentas"/>
   </b-col>
 </b-row>

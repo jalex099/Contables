@@ -22,7 +22,6 @@
 
 <!--  FORMULARIO PARA CREAR LA PARTIDA    -->
         <b-col cols="5">
-          <h2>Nueva Partida</h2>
           <b-button v-if="!bandera" variant="success" class="w-100 p-3 mx-3 my-3" @click="show">Crear Partida</b-button>
           <div v-if="bandera" class="w-100">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
@@ -48,17 +47,21 @@
             </div>
             <b-row class="p-3">
               <b-col cols="2"><div class="my-auto"><span v-if="checked">Haber:</span> <span v-if="!checked">Debe:</span></div></b-col>
-              <b-col cols="5"><b-form-input type="number" class="w-100 my-auto" v-model.number="mount"></b-form-input></b-col>
+              <b-col cols="5"><b-form-input type="number" step=".01" class="w-100 my-auto" v-model.number="mount"></b-form-input></b-col>
               <b-col cols="5"><span class="my-auto">Value: {{ text }}</span></b-col>
             </b-row>
             <b-row>
-              <b-col><b-button variant="secondary" class="w-100 p-3 mx-3 my-3" @click="addCuenta">Añadir cuenta a partida</b-button></b-col>
-              <b-col><b-button variant="success" class="w-100 p-3 mx-3 my-3" @click="addPartida">Agregar Partida</b-button></b-col>
+              <b-col cols="6"><b-button variant="secondary" class="w-100 p-3 mx-3 my-3" @click="addCuenta">Añadir cuenta a partida</b-button></b-col>
+              <b-col cols="6">
+              <b-button variant="secondary" class="w-100 p-3 mx-3 my-3" @click="deleteCuenta">Eliminar última cuenta</b-button>
+              </b-col>
+              <b-col cols="12">
+                <b-button variant="success" class="w-100 p-3 mx-3 my-3" @click="addPartida">Agregar Partida</b-button>
+              </b-col>
             </b-row>
           
           </div>
-          <div class="">{{debit}}</div>
-          <div class="">{{credit}}</div>
+          <div class="">{{dataSend}}</div>
 
           
         </b-col>
@@ -83,12 +86,14 @@ export default {
       selected:String,
       mount:Number,
       description: String,
-      checked:false,
+      checked:Boolean,
       debit: [],
       credit: [],
       totalDebit: Number,
       totalCredit:Number,
-      tableFormated:[]
+      tableFormated:[],
+      dataSend:[],
+      response:String
     }
   },
   methods: {
@@ -96,7 +101,7 @@ export default {
       //debit
       if(this.selected != "" && this.mount!= "" && !this.checked){
         this.debit.push({"account_id": this.selected, "amount": this.mount});
-        this.tableFormated.push({"Cuenta": document.querySelector('#cuentas').options[document.querySelector('#cuentas').selectedIndex].text, "Debe": this.mount, "Haber": 0})
+        this.tableFormated.push({"account_id": this.selected,"Cuenta": document.querySelector('#cuentas').options[document.querySelector('#cuentas').selectedIndex].text, "Debe": this.mount, "Haber": 0})
         this.totalDebit += this.mount;
         this.selected = "";
         this.mount = "";
@@ -104,7 +109,7 @@ export default {
       
       if(this.selected != "" && this.mount!= "" && this.checked){
         this.credit.push({"account_id": this.selected, "amount": this.mount});
-        this.tableFormated.push({"Cuenta": document.querySelector('#cuentas').options[document.querySelector('#cuentas').selectedIndex].text, "Debe": 0, "Haber": this.mount})
+        this.tableFormated.push({"account_id": this.selected,"Cuenta": document.querySelector('#cuentas').options[document.querySelector('#cuentas').selectedIndex].text, "Debe": 0, "Haber": this.mount})
         this.totalCredit+=this.mount;
         this.selected = "";
         this.mount = "";
@@ -129,9 +134,41 @@ export default {
 
     addPartida(){
       if(this.totalDebit === this.totalCredit && this.totalCredit!=0 && this.totalCredit!=0){
-        alert("Send.")
+        this.dataSend=({
+          "description": this.description,
+          "date": new Date(),
+          "debit": this.debit,
+          "credit": this.credit
+        });
+
+        const requestOptions= {
+          method:"POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(this.dataSend)
+        }
+
+        fetch("https://sistemas-contables.herokuapp.com/v1/accounting-seat", requestOptions)
+        .then(response => response.json())
+        .then(data=>(console.log(data)))
+
       } else{
         alert("La partida no esta balanceada.")
+      }
+    },
+
+    deleteCuenta(){
+      if(!this.checked){
+        //debito
+        let deleted = this.debit.pop();
+        this.tableFormated.pop(this.tableFormated.find(table => table.account_id===deleted.account_id));
+        this.totalDebit-=deleted.amount;
+      }
+
+      if(this.checked){
+        //credito
+        let deleted = this.credit.pop();
+        this.tableFormated.pop(this.tableFormated.find(table => table.account_id===deleted.account_id));
+        this.totalCredit-=deleted.amount;
       }
     }
   },
@@ -142,6 +179,7 @@ export default {
     this.mount = 0;
     this.totalDebit =0;
     this.totalCredit =0;
+    this.checked = false;
   }
 }
 </script>
