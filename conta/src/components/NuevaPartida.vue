@@ -133,7 +133,7 @@ export default {
     },
 
     addPartida(){
-      if(this.totalDebit === this.totalCredit && this.totalCredit!=0 && this.totalCredit!=0){
+      if(this.totalDebit!=0){ //this.totalDebit === this.totalCredit && this.totalCredit!=0 && this.totalCredit!=0
         this.dataSend=({
           "description": this.description,
           "date": new Date(),
