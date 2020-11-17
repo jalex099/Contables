@@ -1,9 +1,6 @@
 <template>
 <b-row class="w-100">
-  <b-col  class="py-3">
-    <VerAsientos v-bind:par="cuentas"/>
-  </b-col>
-  <b-col cols="4" class="py-3">
+  <b-col cols="12" class="py-3">
     <NuevaPartida v-bind:par="cuentas"/>
   </b-col>
 </b-row>
@@ -12,13 +9,11 @@
 <script>
 // @ is an alias to /src
 import NuevaPartida from '@/components/NuevaPartida.vue'
-import VerAsientos from '@/components/VerAsientos.vue'
 
 export default {
   name: 'Asientos',
   components: {
-    NuevaPartida,
-    VerAsientos
+    NuevaPartida
   },
   data: ()=>{
     return{
