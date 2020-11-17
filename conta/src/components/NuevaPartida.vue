@@ -9,7 +9,6 @@
           </b-form-select>
           <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
         </div>
-
         <!-- checked button for the debot or credit-->
         <div>
           <b-form-checkbox v-model="checked" name="check-button" switch>
@@ -29,6 +28,13 @@
       </div>
       <div class="">{{debit}}</div>
       <div class="">{{credit}}</div>
+
+      <div class="tblData">
+        <b-table striped hover :items="creditFormated"></b-table>
+      </div>
+      <div class="tblData">
+        <b-table striped hover :items="debitFormated"></b-table>
+      </div>
   </div>
 </template>
 
@@ -51,20 +57,24 @@ export default {
       mount:Number,
       checked:false,
       debit: [],
-      credit: []
+      credit: [],
+      debitFormated:[],
+      creditFormated:[]
     }
   },
   methods: {
     addCuenta(){
       //debit
       if(this.selected != "" && this.mount!= "" && !this.checked){
-        this.debit.push({"_id": this.selected, "mount": this.mount});
+        this.debit.push({"account_id": this.selected, "amount": this.mount});
+        this.debitFormated.push({"Cuenta": document.querySelector('#cuentas').options[document.querySelector('#cuentas').selectedIndex].text, "Monto": this.mount})
         this.selected = "";
         this.mount = ""
       } 
       
       if(this.selected != "" && this.mount!= "" && this.checked){
-        this.credit.push({"_id": this.selected, "mount": this.mount});
+        this.credit.push({"account_id": this.selected, "amount": this.mount});
+         this.creditFormated.push({"Cuenta": document.querySelector('#cuentas').options[document.querySelector('#cuentas').selectedIndex].text, "Monto": this.mount})
         this.selected = "";
         this.mount = ""
       }
