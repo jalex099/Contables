@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
     <VerAsientos v-bind:par="cuentas"/>
   </div>
 </template>
@@ -27,7 +26,13 @@ export default {
             return res.json()
           }) 
           .then(data =>{
-            this.cuentas = data["items"];
+            data["items"].forEach(element => {
+              element["sub_accounts"].forEach(elemen => {
+                elemen["sub_accounts"].forEach(eleme => {
+                  this.cuentas.push(eleme)
+                })
+              })
+            });
           })
           .catch(error =>{
             console.log(error)

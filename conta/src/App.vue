@@ -53,4 +53,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+.icon{
+  width: 2rem;
+}
 </style>
