@@ -3,8 +3,8 @@
 <div>
   <div>
   <!-- As a heading -->
-  <b-navbar toggleable type="light" variant="light">
-    <b-navbar-brand href="#">Contabilidad</b-navbar-brand>
+  <b-navbar toggleable type="light" id="nav" variant="light">
+    <b-navbar-brand style="color: #fff; font-size: 25px"> Contabilidad</b-navbar-brand>
 
     <b-navbar-toggle target="navbar-toggle-collapse">
       <template #default="{ expanded }">
@@ -16,19 +16,24 @@
     <b-collapse id="navbar-toggle-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
         <b-nav-item>
-          <router-link to="/" class="mdl-navigation__link">Home</router-link>
+          <router-link to="/" class="link">Asientos Contables</router-link>
         </b-nav-item>
         <b-nav-item >
-           <router-link to="/about" class="mdl-navigation__link">About</router-link>
+           <router-link to="/about" class="link">About</router-link>
         </b-nav-item>
         <b-nav-item> 
-          <router-link to="/asientos" class="mdl-navigation__link">Asientos Contables</router-link>
+          <router-link to="/asientos" class="link">Nueva Partida</router-link>
         </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </div>
-<router-view/>
+<div style="min-height: 100vh">
+  <transition enter-active-class="slideInLeft"
+    leave-active-class="slideOutRight" mode="out-in">
+    <router-view/>
+  </transition>
+</div>
 </div>
  
 </template>
@@ -38,6 +43,8 @@ import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+require('vue2-animate/dist/vue2-animate.min.css')
+
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
@@ -52,5 +59,36 @@ export default {
   font-family: 'Quicksand', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+  body::-webkit-scrollbar {
+	width: 5px;
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+	background: rgba(244, 93, 105);
+  border-radius: 20px;
+}
+
+#nav{
+  background-color: #5e5e5e !important;
+}
+
+.link{
+  color: #aaaaaa;
+  transition: all linear 0.5s;
+  text-decoration: none;
+  font-size: 14px;
+}
+.link:hover{
+  color: #f45b69;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+body{
+  background-color: #fcfaf9;
 }
 </style>

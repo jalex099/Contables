@@ -24,7 +24,7 @@
 
 <!--  FORMULARIO PARA CREAR LA PARTIDA    -->
         <b-col cols="12" md="5">
-          <b-button v-if="!bandera" variant="success" class="w-100 p-3 mx-3 my-3" @click="show">Crear Partida</b-button>
+          <b-button v-if="!bandera" variant="success" class="w-100 p-3 mx-3 my-3 btnMine" @click="show">Crear Partida</b-button>
           <div v-if="bandera" class="w-100">
             <div class="container">
               <b-row class="p-3">
@@ -37,10 +37,10 @@
                   <b-form-select class="mdl-textfield__input w-100" id="cuentas" name="cuentas" v-model="selected">
                     <OptionsNuevaPartida v-for="cuenta in cuentas" :key="cuenta" v-bind:cuenta="cuenta"/>
                   </b-form-select>
-                  <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+                  <div class="my-3">_id: <strong>{{ selected }}</strong></div>
                 </b-col>
                 <b-col cols="12">
-                  <b-form-checkbox v-model="checked" name="check-button" switch>
+                  <b-form-checkbox v-model="checked" name="check-button" switch class="mb-3">
                     Debe / Haber <b>(Tipo: <span v-if="checked">Haber</span> <span v-if="!checked">Debe</span>)</b>
                   </b-form-checkbox>
                 </b-col>
@@ -55,7 +55,7 @@
               <b-button variant="secondary" class="w-100 p-3 mx-3 my-3" @click="deleteCuenta">Eliminar última cuenta</b-button>
               </b-col>
               <b-col cols="12">
-                <b-button variant="success" class="w-100 p-3 mx-3 my-3" @click="addPartida">Agregar Partida</b-button>
+                <b-button variant="success" class="w-100 p-3 mx-3 my-3 btnMine" @click="addPartida">Agregar Partida</b-button>
               </b-col>
             </b-row>
           
@@ -210,5 +210,15 @@ export default {
 <style scoped>
 h2{
   font-family: 'Quicksand', sans-serif;
+}
+
+.btnMine{
+  background: rgba(244, 91, 105,1); 
+  border: none;
+  transition: all 0.4s linear;
+}
+.btnMine:hover{
+  border: none;
+  letter-spacing: 2px;
 }
 </style>

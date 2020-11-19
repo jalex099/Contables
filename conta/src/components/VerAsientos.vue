@@ -1,5 +1,5 @@
 <template>
-  <div class="tblData">
+  <div class="tblData container">
         <b-table striped hover :items="par"></b-table>
   </div>
   
@@ -17,7 +17,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .tblData{
-  height: 40rem;
+  height: 100vh;
   overflow: auto;
+}
+
+  .tblData::-webkit-scrollbar {
+	width: 5px;
+  background: transparent;
+}
+
+.tblData::-webkit-scrollbar-thumb {
+	background: rgba(244, 91, 105,0.2);
+  border-radius: 20px;
 }
 </style>
