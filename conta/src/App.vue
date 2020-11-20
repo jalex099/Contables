@@ -62,10 +62,6 @@ export default {
 }
 
 
-<<<<<<< HEAD
-.icon{
-  width: 2rem;
-=======
   body::-webkit-scrollbar {
 	width: 5px;
   background: transparent;
@@ -94,6 +90,5 @@ body::-webkit-scrollbar-thumb {
 
 body{
   background-color: #fcfaf9;
->>>>>>> a1c05638079f93b7e44cae118d97bd93f5f24bf5
 }
 </style>
