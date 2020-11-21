@@ -4,7 +4,10 @@
   <div>
   <!-- As a heading -->
   <b-navbar toggleable type="light" id="nav" variant="light">
-    <b-navbar-brand style="color: #fff; font-size: 25px"> Contabilidad</b-navbar-brand>
+    <b-navbar-brand style="color: #fff; font-size: 25px">
+       <img src="./assets/pill.svg" class="d-inline-block align-top" style="width:3rem" alt="Icono de farmacia">
+       FarmaRichard
+    </b-navbar-brand>
 
     <b-navbar-toggle target="navbar-toggle-collapse">
       <template #default="{ expanded }">
