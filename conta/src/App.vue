@@ -21,11 +21,11 @@
         <b-nav-item>
           <router-link to="/" class="link">Asientos Contables</router-link>
         </b-nav-item>
-        <b-nav-item >
-           <router-link to="/about" class="link">About</router-link>
-        </b-nav-item>
         <b-nav-item> 
-          <router-link to="/asientos" class="link">Nueva Partida</router-link>
+          <router-link to="/partida" class="link">Nueva Partida</router-link>
+        </b-nav-item>
+        <b-nav-item >
+           <router-link to="/informacion" class="link">Información</router-link>
         </b-nav-item>
       </b-navbar-nav>
     </b-collapse>

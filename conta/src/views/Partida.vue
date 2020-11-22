@@ -12,7 +12,7 @@
 import NuevaPartida from '@/components/NuevaPartida.vue'
 
 export default {
-  name: 'Asientos',
+  name: 'Partida',
   components: {
     NuevaPartida
   },
@@ -23,7 +23,7 @@ export default {
   },
   created: 
     async function () {
-      window.document.title = "Asientos Contables"
+      window.document.title = "Nueva Partida"
       fetch("https://sistemas-contables.herokuapp.com/v1/accounts")
           .then(res =>{
             return res.json()
