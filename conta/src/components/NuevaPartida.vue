@@ -46,7 +46,7 @@
                 </b-col>
                 <b-col cols="2"><div class="my-auto"><span v-if="checked">Haber:</span> <span v-if="!checked">Debe:</span></div></b-col>
                 <b-col cols="5"><b-form-input type="number" step=".01" class="w-100 my-auto" v-model.number="mount"></b-form-input></b-col>
-                <b-col cols="5"><span class="my-auto">Value: {{ text }}</span></b-col>
+                <b-col cols="5"><span class="my-auto">Value: {{ mount }}</span></b-col>
               </b-row>
             </div>
             <b-row class="p-3">
@@ -137,9 +137,7 @@ export default {
       if(this.par.length != 0){
           this.par.forEach(element => {
              element['sub_accounts'].forEach(elemen => {
-               elemen['sub_accounts'].forEach(eleme => {
-               this.cuentas.push(eleme)
-             });
+               this.cuentas.push(elemen)
             });
              
            })

@@ -28,9 +28,7 @@ export default {
           .then(data =>{
             data["items"].forEach(element => {
               element["sub_accounts"].forEach(elemen => {
-                elemen["sub_accounts"].forEach(eleme => {
-                  this.cuentas.push(eleme)
-                })
+                  this.cuentas.push(elemen)
               })
             });
           })
