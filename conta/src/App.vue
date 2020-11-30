@@ -21,6 +21,9 @@
         <b-nav-item>
           <router-link to="/" class="link">Asientos Contables</router-link>
         </b-nav-item>
+        <b-nav-item >
+           <router-link to="/balance" class="link">Balance General</router-link>
+        </b-nav-item>
         <b-nav-item> 
           <router-link to="/partida" class="link">Nueva Partida</router-link>
         </b-nav-item>
