@@ -1,9 +1,7 @@
 <template>
 <b-row class="w-100">
-  <b-col  class="py-3">
-    <VerAsientos v-bind:par="cuentas"/>
-  </b-col>
-  <b-col cols="4" class="py-3">
+  <b-col cols="12" class="py-3">
+    <b-alert show variant="light" style="font-size:2rem; border-bottom: 1px rgb(244, 91, 105) solid">- Nueva partida -</b-alert>
     <NuevaPartida v-bind:par="cuentas"/>
   </b-col>
 </b-row>
@@ -12,13 +10,11 @@
 <script>
 // @ is an alias to /src
 import NuevaPartida from '@/components/NuevaPartida.vue'
-import VerAsientos from '@/components/VerAsientos.vue'
 
 export default {
-  name: 'Asientos',
+  name: 'Partida',
   components: {
-    NuevaPartida,
-    VerAsientos
+    NuevaPartida
   },
   data: ()=>{
     return{
@@ -27,7 +23,7 @@ export default {
   },
   created: 
     async function () {
-      window.document.title = "Asientos Contables"
+      window.document.title = "Nueva Partida"
       fetch("https://sistemas-contables.herokuapp.com/v1/accounts")
           .then(res =>{
             return res.json()
