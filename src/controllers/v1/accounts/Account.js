@@ -70,21 +70,10 @@ class Account {
       const seatIds = transactions.map(transaction => String(transaction.accounting_seat_id))
       const seats = await AccountingSeatsModel.find({_id: {$in: seatIds}})
 
-      const credit = transactions.filter(transaction => transaction.account_id === String(account._id) && transaction.type === 'credit')
-      const debit = transactions.filter(transaction => transaction.account_id === String(account._id) && transaction.type === 'debit')
-
-      account.transactions = {credit: [], debit: []}
-      account.transactions.credit = credit.map(transaction => {
+      account.transactions = transactions.map(transaction => {
         const [seat] = seats.filter(seat => String(seat._id) === transaction.accounting_seat_id)
         return {
-          date: seat.date,
-          seat: seat.description,
-          amount: transaction.amount
-        }
-      })
-      account.transactions.debit = debit.map(transaction => {
-        const [seat] = seats.filter(seat => String(seat._id) === transaction.accounting_seat_id)
-        return {
+          type: transaction.type,
           date: seat.date,
           seat: seat.description,
           amount: transaction.amount
@@ -94,6 +83,34 @@ class Account {
     } catch (error) {
       console.log(error)
       return account
+    }
+  }
+
+  static async getBalance (accounts) {
+    try {
+      let income = accounts[3].current_amount
+      let costs = accounts[4].current_amount
+      let expenses = accounts[5].current_amount
+      let grossProfit = income - costs
+      let utilityOperation = grossProfit - expenses
+      let legalReserve = utilityOperation * 0.07
+      let utilityBeforeToTaxes = utilityOperation - legalReserve
+      const tax = (utilityBeforeToTaxes > 50000) ? 0.30 : 0.25
+      let taxToPay = utilityBeforeToTaxes * tax
+      let netProfit = utilityBeforeToTaxes - taxToPay
+
+      const balance = {
+        active: accounts[0],
+        passive: accounts[0],
+        capital: accounts[0],
+        legalReserve,
+        taxToPay,
+        netProfit
+      }
+      return balance
+    } catch (error) {
+      console.log(error)
+      return null
     }
   }
 }

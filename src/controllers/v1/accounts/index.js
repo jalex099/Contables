@@ -10,6 +10,7 @@ class AccountsController {
     const router = new Router()
 
     router.get('/', AccountsController.list)
+    router.get('/balance', AccountsController.balance)
     router.post('/', AccountsController.create)
     router.delete('/:accountId', AccountsController.delete)
     router.get('/:accountId/transactions', AccountsController.transactions)
@@ -67,6 +68,7 @@ class AccountsController {
       return Response.notFound(res, 'Account not Found')
     }
   }
+
   static async transactions (req, res, next) {
     try {
       const { accountId } = req.params
@@ -79,6 +81,17 @@ class AccountsController {
       return Response.success(res, account)
     } catch (error) {
       return Response.notFound(res, 'Account not Found')
+    }
+  }
+
+  static async balance (req, res, next) {
+    try {
+      let accounts = await AccountsModel.find({})
+      accounts = Account.organize(accounts)
+      const balance = await Account.getBalance(accounts)
+      return Response.success(res, balance)
+    } catch (error) {
+      return Response.badRequest(res, error)
     }
   }
 }
