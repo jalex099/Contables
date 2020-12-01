@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    {{credit}}
       <b-row>
         <b-col cols="12" md="7">
           <b-alert v-if="!banderaBalance" show variant="danger" style="font-size:2rem">La partida no esta balanceada</b-alert>
