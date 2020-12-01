@@ -164,7 +164,20 @@ export default {
 
           fetch("https://sistemas-contables.herokuapp.com/v1/accounting-seat", requestOptions)
           .then(response => response.json())
-          .then(data=>(console.log(data)))
+          .then(()=>{
+            this.bandera = false;
+            this.selected= "";
+            this.description = "";
+            this.mount = 0;
+            this.totalDebit =0;
+            this.totalCredit =0;
+            this.debit = [];
+            this.credit = [];
+            this.checked = false;
+            this.banderaBalance = true;
+            this.banderaDescription = false;
+            this.tableFormated = []
+          })
 
         } else{
           this.banderaBalance = false

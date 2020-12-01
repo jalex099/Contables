@@ -6,7 +6,7 @@
   <b-navbar toggleable type="light" id="nav" variant="light">
     <b-navbar-brand style="color: #fff; font-size: 25px">
        <img src="./assets/services.svg" class="d-inline-block align-top" style="width:3rem" alt="Icono de farmacia">
-       Hackerman Services
+       Ackerman Services
     </b-navbar-brand>
 
     <b-navbar-toggle target="navbar-toggle-collapse">
