@@ -101,8 +101,8 @@ class Account {
 
       const balance = {
         active: accounts[0],
-        passive: accounts[0],
-        capital: accounts[0],
+        passive: accounts[1],
+        capital: accounts[2],
         legalReserve,
         taxToPay,
         netProfit
