@@ -1,9 +1,15 @@
 <template>
     <div>
-         <h1>Activo</h1>
+         <h1>Activo</h1>{{selected}}
+         <button v-on:click="show">Add 1</button>
+         <b-form-select class="mdl-textfield__input w-100" id="cuentas" name="cuentas" v-model="selected" required>
+              <OptionsNuevaPartida v-for="cuenta in active_sub_accounts" :key="cuenta" v-bind:cuenta="cuenta"/>
+           </b-form-select>
+         <div v-for="active in active_sub_accounts" :key="active">
+         </div>
             {{active["name"]}}
             {{active["current_amount"]}}
-            <b-dropdown id="dropdown-dropright" dropright text="Ver estados de cuentas" variant="warning" class="m-2">
+            <b-dropdown id="dropdown-dropright" dropright text="Ver estados de cuentas" variant="warning" class="m-2" v-on:click="show">
                 <DetalleBalance v-bind:cuenta="active_sub_accounts"/>
             </b-dropdown>
             
@@ -28,11 +34,12 @@
 // @ is an alias to /src
 
 import DetalleBalance from '@/components/DetalleBalance.vue'
-
+import OptionsNuevaPartida from '@/components/OptionsNuevaPartida.vue'
 export default {
   name: 'Balance',
   components: {
-    DetalleBalance
+    DetalleBalance,
+    OptionsNuevaPartida
   },
   data: ()=>{
     return{
@@ -44,12 +51,28 @@ export default {
       capital_sub_accounts:[],
       legalReserve: Number,
       taxToPay: Number,
-      netProfit: Number
+      netProfit: Number,
+      selected:String
     }
+  },
+  methods:{
+    show(){
+      let url = "https://sistemas-contables.herokuapp.com/v1/accounts/" + this.selected + "/transactions"
+      fetch(url)
+          .then(res =>{
+            return res.json()
+          }) 
+          .then(data =>{
+            console.log(data)
+          })
+          .catch(error =>{
+            console.log(error)
+          })
+      }
   },
   created: async function (){
     window.document.title = "Balance";
-    
+    this.selected=""
      fetch("https://sistemas-contables.herokuapp.com/v1/accounts/balance")
           .then(res =>{
             return res.json()
