@@ -52,12 +52,21 @@
           </b-row>
         </b-col>
       </b-row>
-         <h1>Activo</h1>{{selected}}
-         <button v-on:click="show">Ver transacciones</button>
-         <b-form-select class="mdl-textfield__input w-100" id="cuentas" name="cuentas" v-model="selected" required>
+      <b-row>
+        <b-col cols="12" lg="5">
+          
+          <b-form-select class="mdl-textfield__input w-100" id="cuentas" name="cuentas" v-model="selected" required>
               <OptionsNuevaPartida v-for="cuenta in active_sub_accounts" :key="cuenta" v-bind:cuenta="cuenta"/>
            </b-form-select>
-         {{detail}}
+           <b-button v-on:click="show" variant="warning" class=" my-2">Ver transacciones</b-button>
+        </b-col>
+        <b-col cols="12" lg="7">
+          {{detail}}
+          <DetalleBalance v-bind:cuenta="detail"/>
+        </b-col>
+      </b-row>
+         <h1>Activo</h1>{{selected}}
+         
             {{active["name"]}}
             {{active["current_amount"]}}
             <b-dropdown id="dropdown-dropright" dropright text="Ver estados de cuentas" variant="warning" class="m-2" v-on:click="show">
@@ -103,7 +112,10 @@ export default {
             return res.json()
           }) 
           .then(data =>{
-            this.detail = data
+            this.detail.pop()
+            data["transactions"].forEach(element =>{
+              this.detail.push(element)
+            })
           })
           .catch(error =>{
             console.log(error)
