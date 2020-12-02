@@ -34,7 +34,7 @@
     </b-collapse>
   </b-navbar>
 </div>
-<div style="min-height: 100vh">
+<div style="min-height: 100vh;">
   <transition enter-active-class="slideInLeft"
     leave-active-class="slideOutRight" mode="out-in">
     <router-view/>
@@ -96,5 +96,19 @@ body::-webkit-scrollbar-thumb {
 
 body{
   background-color: #fcfaf9;
+}
+
+.btn {
+  background-color: #f45b69  !important; 
+  padding: 1rem 2rem;
+  border: 1px solid #5E5E5E!important;
+  color: #FCFAF9 !important;
+  transition: all 0.4s linear;
+}
+.btn:hover{
+  background-color:#FCFAF9  !important; 
+  padding: 1rem 2rem;
+  border: 1px solid #5E5E5E;
+  color: #f45b69 !important;
 }
 </style>

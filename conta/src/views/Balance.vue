@@ -54,6 +54,12 @@
             </b-col>
           </b-row>
         </b-col>
+        <b-col cols="12">
+          <div class="colour-data p-3 rounded flexible">
+            <p> <span class="font-weight-bold">Total Activos:</span>  ${{totalActive}}</p>
+            <p><span class="font-weight-bold">Total Pasivos + Capital:</span> ${{totalPassive + totalCapital}}</p>
+          </div>
+        </b-col>
       </b-row>
       <hr>
       <b-row>
@@ -62,7 +68,7 @@
           <b-form-select class="mdl-textfield__input w-100" id="cuentas" name="cuentas" v-model="selected" required>
               <OptionsNuevaPartida v-for="cuenta in active_sub_accounts" :key="cuenta" v-bind:cuenta="cuenta"/>
            </b-form-select>
-           <b-button v-on:click="show" variant="warning" class=" my-2">Ver transacciones</b-button>
+           <b-button v-on:click="show" variant="light" class=" my-2 btn">Ver transacciones</b-button>
         </b-col>
         <b-col cols="12" lg="7">
           <DetalleBalance v-bind:cuenta="detail"/>
@@ -94,7 +100,10 @@ export default {
       taxToPay: Number,
       netProfit: Number,
       selected:String,
-      detail:[]
+      detail:[],
+      totalActive:Number,
+      totalPassive:Number,
+      totalCapital:Number
     }
   },
   methods:{
@@ -116,6 +125,9 @@ export default {
       }
   },
   created: async function (){
+    this.totalActive =0
+    this.totalPassive = 0
+    this.totalCapital = 0
     window.document.title = "Balance";
     this.selected=""
      fetch("https://sistemas-contables.herokuapp.com/v1/accounts/balance")
@@ -141,6 +153,13 @@ export default {
             this.capital["sub_accounts"].forEach(element => {
                 this.capital_sub_accounts.push(element)
             });
+
+            this.totalActive += this.active['current_amount'];
+            this.totalPassive += this.passive['current_amount'];
+            this.totalPassive += this.taxToPay
+            this.totalCapital += this.capital['current_amount']
+            this.totalCapital += this.legalReserve
+            this.totalCapital += this.netProfit
           })
           .catch(error =>{
             console.log(error)
@@ -157,5 +176,17 @@ export default {
   display:flex; 
   justify-content:space-between; 
   align-self: center;
+}
+
+.colour-data{
+  background-color: #f45b69;
+  color:#bbb;
+  letter-spacing: 1px;
+}
+
+.flexible{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 </style>
