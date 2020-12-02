@@ -48,8 +48,8 @@
                   <p>$ {{capital.current_amount}}</p>
                 </div>
               </div>
-              <p class="text-muted">Reserva Legal: ${{legalReserve}}</p>
               <p class="text-muted">Impuestos por Pagar: ${{taxToPay}}</p>
+              <p class="text-muted">Reserva Legal: ${{legalReserve}}</p>
               <p class="text-muted">Utilidad Neta: ${{netProfit}}</p>
             </b-col>
           </b-row>
@@ -105,7 +105,7 @@ export default {
             return res.json()
           }) 
           .then(data =>{
-            this.detail.pop()
+            this.detail=[]
             data["transactions"].forEach(element =>{
               this.detail.push(element)
             })
