@@ -48,33 +48,26 @@
                   <p>$ {{capital.current_amount}}</p>
                 </div>
               </div>
+              <p class="text-muted">Reserva Legal: ${{legalReserve}}</p>
+              <p class="text-muted">Impuestos por Pagar: ${{taxToPay}}</p>
+              <p class="text-muted">Utilidad Neta: ${{netProfit}}</p>
             </b-col>
           </b-row>
         </b-col>
       </b-row>
+      <hr>
       <b-row>
         <b-col cols="12" lg="5">
-          
+          <h4 class="my-3" style="font-family: 'Quicksand', sans-serif;">Detalle de Cuentas</h4>
           <b-form-select class="mdl-textfield__input w-100" id="cuentas" name="cuentas" v-model="selected" required>
               <OptionsNuevaPartida v-for="cuenta in active_sub_accounts" :key="cuenta" v-bind:cuenta="cuenta"/>
            </b-form-select>
            <b-button v-on:click="show" variant="warning" class=" my-2">Ver transacciones</b-button>
         </b-col>
         <b-col cols="12" lg="7">
-          {{detail}}
           <DetalleBalance v-bind:cuenta="detail"/>
         </b-col>
       </b-row>
-         <h1>Activo</h1>{{selected}}
-         
-            {{active["name"]}}
-            {{active["current_amount"]}}
-            <b-dropdown id="dropdown-dropright" dropright text="Ver estados de cuentas" variant="warning" class="m-2" v-on:click="show">
-                <DetalleBalance v-bind:cuenta="active_sub_accounts"/>
-            </b-dropdown>
-            
-            <h1>Reserva Legal</h1>
-            {{legalReserve}}
     </div>
 </template>
 
