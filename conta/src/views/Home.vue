@@ -28,6 +28,7 @@ export default {
           .then(data =>{
             data["items"].forEach(element => {
               element["sub_accounts"].forEach(elemen => {
+                  if(elemen['current_amount']>0)
                   this.cuentas.push(elemen)
               })
             });

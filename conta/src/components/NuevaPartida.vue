@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    {{credit}}
       <b-row>
         <b-col cols="12" md="7">
           <b-alert v-if="!banderaBalance" show variant="danger" style="font-size:2rem">La partida no esta balanceada</b-alert>
@@ -165,7 +164,11 @@ export default {
 
           fetch("https://sistemas-contables.herokuapp.com/v1/accounting-seat", requestOptions)
           .then(response => response.json())
-          .then(()=>{
+          .then(data=>{
+            console.log(data);
+            if(data.error){
+              alert(data.error)
+            } else{
             this.bandera = false;
             this.selected= "";
             this.description = "";
@@ -178,6 +181,10 @@ export default {
             this.banderaBalance = true;
             this.banderaDescription = false;
             this.tableFormated = []
+            }
+            
+          }).catch(() =>{
+            alert("PARTIDA NO INGRESADA. Revise estados de cuentas deudoras y acreedoras")
           })
 
         } else{

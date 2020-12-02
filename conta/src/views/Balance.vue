@@ -53,29 +53,17 @@
         </b-col>
       </b-row>
          <h1>Activo</h1>{{selected}}
-         <button v-on:click="show">Add 1</button>
+         <button v-on:click="show">Ver transacciones</button>
          <b-form-select class="mdl-textfield__input w-100" id="cuentas" name="cuentas" v-model="selected" required>
               <OptionsNuevaPartida v-for="cuenta in active_sub_accounts" :key="cuenta" v-bind:cuenta="cuenta"/>
            </b-form-select>
-         
+         {{detail}}
             {{active["name"]}}
             {{active["current_amount"]}}
             <b-dropdown id="dropdown-dropright" dropright text="Ver estados de cuentas" variant="warning" class="m-2" v-on:click="show">
                 <DetalleBalance v-bind:cuenta="active_sub_accounts"/>
             </b-dropdown>
             
-            <h1>Pasivo</h1>
-            {{passive["name"]}}
-            {{passive["current_amount"]}}
-            <b-dropdown id="dropdown-dropright" dropright text="Ver estados de cuentas" variant="warning" class="m-2">
-                <DetalleBalance v-bind:cuenta="passive_sub_accounts"/>
-            </b-dropdown>
-            <h1>Capital</h1>
-             {{capital["name"]}}
-            {{capital["current_amount"]}}
-            <b-dropdown id="dropdown-dropright" dropright text="Ver estados de cuentas" variant="warning" class="m-2">
-                <DetalleBalance v-bind:cuenta="capital_sub_accounts"/>
-            </b-dropdown>
             <h1>Reserva Legal</h1>
             {{legalReserve}}
     </div>
@@ -103,7 +91,8 @@ export default {
       legalReserve: Number,
       taxToPay: Number,
       netProfit: Number,
-      selected:String
+      selected:String,
+      detail:[]
     }
   },
   methods:{
@@ -114,7 +103,7 @@ export default {
             return res.json()
           }) 
           .then(data =>{
-            console.log(data)
+            this.detail = data
           })
           .catch(error =>{
             console.log(error)
