@@ -7,7 +7,7 @@
             <b-col cols="12">
               <div class="container py-2" style="display:flex; justify-content:space-between">
                 <h5>ACTIVOS</h5>
-                <p class="text-muted">$ {{active.current_amount}}</p>
+                <p class="text-muted">$ {{totalActive}}</p>
               </div><hr>
               <div class="container" v-for="active in active_sub_accounts" :key="active" >
                 <div class="py-1 px-5 data" v-if="active.current_amount >0" >
@@ -25,7 +25,7 @@
             <b-col cols="12">
               <div class="container py-2" style="display:flex; justify-content:space-between">
                 <h5>PASIVOS</h5>
-                <p class="text-muted">$ {{passive.current_amount}}</p>
+                <p class="text-muted">$ {{totalPassive}}</p>
               </div> <hr>
               <div class="container" v-for="passive in passive_sub_accounts" :key="passive">
                 <div class="py-1 px-5 data" v-if="passive.current_amount >0" >
@@ -40,7 +40,7 @@
             <b-col cols="12">
               <div class="container py-2" style="display:flex; justify-content:space-between">
                 <h5>CAPITAL</h5>
-                <p class="text-muted">$ {{capital.current_amount}}</p>
+                <p class="text-muted">$ {{totalCapital}}</p>
               </div> <hr>
               <div class="container" v-for="capital in capital_sub_accounts" :key="capital">
                 <div class="py-1 px-5 data" v-if="capital.current_amount >0" >
@@ -48,9 +48,18 @@
                   <p>$ {{capital.current_amount}}</p>
                 </div>
               </div>
-              <p class="text-muted">Impuestos por Pagar: ${{taxToPay}}</p>
-              <p class="text-muted">Reserva Legal: ${{legalReserve}}</p>
-              <p class="text-muted">Utilidad Neta: ${{netProfit}}</p>
+              <div class="container py-1 px-5 data">
+                <p >Impuestos por Pagar: </p>
+                <p>${{taxToPay}}</p>
+              </div>
+              <div class="container py-1 px-5 data">
+                <p >Reserva Legal: </p>
+                <p>${{legalReserve}}</p>
+              </div>
+              <div class="container py-1 px-5 data">
+                <p >Utilidad Neta: </p>
+                <p>${{netProfit}}</p>
+              </div>
             </b-col>
           </b-row>
         </b-col>
