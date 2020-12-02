@@ -3,9 +3,9 @@
 <div>
   <div>
   <!-- As a heading -->
-  <b-navbar toggleable type="light" id="nav" variant="light">
+  <b-navbar toggleable type="dark" id="nav" variant="dark">
     <b-navbar-brand style="color: #fff; font-size: 25px">
-       <img src="./assets/services.svg" class="d-inline-block align-top" style="width:3rem" alt="Icono de farmacia">
+       <img src="./assets/services.svg" class="d-inline-block align-top" style="width:3rem" alt="Icono de empresa">
        Ackerman Services
     </b-navbar-brand>
 
