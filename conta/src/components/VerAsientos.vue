@@ -1,6 +1,6 @@
 <template>
   <div class="tblData container">
-        <b-table striped hover :items="par"></b-table>
+        <b-table striped hover :items="par"  :fields="fields"></b-table>
   </div>
   
 </template>
@@ -10,6 +10,11 @@ export default {
   name: 'VerAsientos',
   props:{
     par:Array
+  },
+  data:()=>{
+    return{
+      fields:['name','current_amount','type']
+    }
   }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    {{credit}}
       <b-row>
         <b-col cols="12" md="7">
           <b-alert v-if="!banderaBalance" show variant="danger" style="font-size:2rem">La partida no esta balanceada</b-alert>
@@ -164,7 +165,20 @@ export default {
 
           fetch("https://sistemas-contables.herokuapp.com/v1/accounting-seat", requestOptions)
           .then(response => response.json())
-          .then(data=>(console.log(data)))
+          .then(()=>{
+            this.bandera = false;
+            this.selected= "";
+            this.description = "";
+            this.mount = 0;
+            this.totalDebit =0;
+            this.totalCredit =0;
+            this.debit = [];
+            this.credit = [];
+            this.checked = false;
+            this.banderaBalance = true;
+            this.banderaDescription = false;
+            this.tableFormated = []
+          })
 
         } else{
           this.banderaBalance = false
