@@ -189,7 +189,7 @@ export default {
 
 .colour-data{
   background-color: #f45b69;
-  color:#bbb;
+  color:#FCFAF9;
   letter-spacing: 1px;
 }
 
