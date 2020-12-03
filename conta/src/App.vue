@@ -19,7 +19,10 @@
     <b-collapse id="navbar-toggle-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
         <b-nav-item>
-          <router-link to="/" class="link">Asientos Contables</router-link>
+          <router-link to="/diario" class="link">Libro Diario</router-link>
+        </b-nav-item>
+        <b-nav-item>
+          <router-link to="/mayor" class="link">Libro Mayor</router-link>
         </b-nav-item>
         <b-nav-item >
            <router-link to="/balance" class="link">Balance General</router-link>

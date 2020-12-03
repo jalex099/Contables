@@ -1,10 +1,10 @@
 <template>
   <b-row>
       <b-col cols="6" lg="2">
-          <p>{{movement['description']}}</p>
+        <p>{{movement['date'].replace("T"," ").replace(".000Z","")}}</p>
       </b-col>
       <b-col cols="6" lg="2">
-        <p>{{movement['date']}}</p>
+        <p>{{movement['description']}}</p>
       </b-col>
       <b-col cols="12" lg="8">
           Debe<ElementDiario v-bind:element="movement['debit']" class="element"/>
