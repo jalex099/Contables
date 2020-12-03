@@ -1,36 +1,34 @@
 <template>
-  <div class="home">
-    <VerAsientos v-bind:par="cuentas"/>
-  </div>
+    <b-row class="w-100">
+      <b-col cols="12"> 
+        <Diario v-bind:diario="movements"/>
+      </b-col>
+    </b-row>
 </template>
 
 <script>
 // @ is an alias to /src
 
-import VerAsientos from '@/components/VerAsientos.vue'
-
+import Diario from '@/components/Diario.vue'
 export default {
   name: 'Home',
   components: {
-    VerAsientos
+    Diario
   },
   data: ()=>{
     return{
-      cuentas:[]
+      movements:[]
     }
   },
   created: async function (){
     window.document.title = "Home";
-    fetch("https://sistemas-contables.herokuapp.com/v1/accounts")
+    fetch("https://sistemas-contables.herokuapp.com/v1/accounting-seat")
           .then(res =>{
             return res.json()
           }) 
           .then(data =>{
-            data["items"].forEach(element => {
-              element["sub_accounts"].forEach(elemen => {
-                  if(elemen['current_amount']>0)
-                  this.cuentas.push(elemen)
-              })
+            data['items'].forEach(element => {
+              this.movements.push(element)
             });
           })
           .catch(error =>{
